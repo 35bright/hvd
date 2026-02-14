@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 65 65 65">
+  <defs>
+    <clipPath id="clip-bottomleft">
+      <rect x="0" y="65" width="65" height="65"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-bottomleft)">
+    <path d="M 65,29 C 59,19 49,12 37,12 20,12 7,25 7,42 7,75 25,80 65,118 105,80 123,75 123,42 123,25 110,12 93,12 81,12 71,19 65,29 z" 
+          fill="#ff0707"/>
+  </g>
+</svg>
