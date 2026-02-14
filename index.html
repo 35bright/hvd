@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Background & Canvas -->
+    <div id="main-background" class="grayscale-mode"></div>
+    <canvas id="hearts-canvas" class="grayscale-mode"></canvas>
+
+    <div id="content-wrapper" class="grayscale-mode">
+
+        <!-- Hero Section -->
+        <section class="section hero-section" id="hero" data-section="1" data-complete="true">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="word">Happy</span>
+                        <span class="word">Valentine's</span>
+                        <span class="word">Day</span>
+                    </h1>
+                    <p class="hero-subtitle">চলো না ঘুরে আসি অজানাতে...</p>
+                    <div class="scroll-hint">
+                        <span>Scroll to begin</span>
+                        <div class="arrow-down"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Color Section -->
+        <section class="section color-section" id="colorful" data-section="2" data-complete="false">
+            <div class="container">
+                <h2 class="section-title">Without You</h2>
+                <p class="section-subtitle">Everything feels empty and colorless</p>
+                <button class="primary-btn" id="bring-color">
+                    <span>You know what?</span>
+                    <i class="fas fa-palette"></i>
+                </button>
+                <div class="color-reveal hidden">
+                    <h3 class="reveal-title">You Make My World Colorful</h3>
+                    <p class="reveal-text">Every moment shines brighter with you and I'm so glad you're in my life</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Numbers Section -->
+        <section class="section numbers-section" id="numbers" data-section="3" data-complete="false">
+            <div class="container">
+                <h2 class="section-title">The Special Numbers</h2>
+                <p class="section-subtitle">Guess what makes the day unique?</p>
+
+                <div class="numbers-container">
+                    <div class="number-box">
+                        <label>Your Favourite Number</label>
+                        <input type="number" id="her-num" class="num-input" placeholder="?">
+                    </div>
+                    <div class="hearts-divider">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="number-box">
+                        <label>My Favourite Number</label>
+                        <input type="number" id="my-num" class="num-input" placeholder="?">
+                    </div>
+                </div>
+
+                <button class="primary-btn" id="check-numbers">
+                    <span>Check</span>
+                    <i class="fas fa-check-circle"></i>
+                </button>
+
+                <div class="result-box hidden" id="num-success">
+                    <div class="magic-numbers">
+                        <span class="big-num">7</span>
+                        <span class="big-num">11</span>
+                    </div>
+                    <p class="result-text">Do you know? It's exactly <strong>11 months & 7 days</strong> since we
+                        connected!</p>
+                </div>
+
+                <div class="error-box hidden" id="num-error">
+                    <p>Not quite! Think about what's special to us</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Puzzle Section -->
+        <section class="section puzzle-section" id="puzzle" data-section="4" data-complete="false">
+            <div class="container">
+                <h2 class="section-title">Fix The Heart</h2>
+                <p class="section-subtitle">Put the pieces back together</p>
+
+                <div class="puzzle-container">
+                    <div id="puzzle-grid" class="puzzle-grid">
+                        <!-- Heart pieces will be created by JS -->
+                    </div>
+                </div>
+
+                <div class="success-box hidden" id="puzzle-done">
+                    <div class="heart-beat">
+                        <i class="fas fa-heart fa-5x"></i>
+                    </div>
+                    <p class="success-text">You fix my heart like that every time it needs to be fixed!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flowers Section -->
+        <section class="section flowers-section" id="flowers" data-section="5" data-complete="false">
+            <div class="container">
+                <h2 class="section-title">Three Flowers for You</h2>
+                <p class="section-subtitle">Each holds something special</p>
+
+                <div class="flowers-row">
+                    <div class="flower-card" data-flower="1" data-revealed="false">
+                        <div class="flower-image-wrapper">
+                            <img src="assets/images/image1.png" alt="White Chrysanthemum" class="flower-image">
+                        </div>
+                        <p class="flower-label">White Chrysanthemum</p>
+                        <p class="flower-sublabel">Your Favorite Flower</p>
+                    </div>
+
+                    <div class="flower-card" data-flower="2" data-revealed="false">
+                        <div class="flower-image-wrapper">
+                            <img src="assets/images/image2.png" alt="Red Rose" class="flower-image">
+                        </div>
+                        <p class="flower-label">Red Rose</p>
+                        <p class="flower-sublabel">For the Love!</p>
+                    </div>
+
+                    <div class="flower-card" data-flower="3" data-revealed="false">
+                        <div class="flower-image-wrapper">
+                            <img src="assets/images/image3.png" alt="Pink Cosmos" class="flower-image">
+                        </div>
+                        <p class="flower-label">Pink Cosmos</p>
+                        <p class="flower-sublabel">Something Beautiful!</p>
+                    </div>
+                </div>
+
+                <p class="completion-hint" id="flower-hint">Reveal all 3 flowers to continue</p>
+            </div>
+        </section>
+
+        <!-- Songs Section -->
+        <section class="section songs-section" id="songs" data-section="6" data-complete="false">
+            <div class="container">
+                <h2 class="section-title">Songs That Remind Me of You</h2>
+                <p class="section-subtitle">Each melody tells a story</p>
+
+                <div class="songs-row">
+                    <div class="song-card" data-song="1" data-played="false">
+                        <button class="play-circle">
+                            <i class="fas fa-play fa-2x"></i>
+                        </button>
+                    </div>
+
+                    <div class="song-card" data-song="2" data-played="false">
+                        <button class="play-circle">
+                            <i class="fas fa-play fa-2x"></i>
+                        </button>
+                    </div>
+
+                    <div class="song-card" data-song="3" data-played="false">
+                        <button class="play-circle">
+                            <i class="fas fa-play fa-2x"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <p class="completion-hint" id="song-hint">Play all 3 songs to continue</p>
+            </div>
+        </section>
+
+        <!-- Messages Section -->
+        <section class="section messages-section" id="messages" data-section="7" data-complete="false">
+            <div class="container">
+                <h2 class="section-title">Hidden Message</h2>
+                <p class="section-subtitle">Tap each word to reveal the secret</p>
+
+                <div class="words-grid">
+                    <div class="word-card" data-word="Every">
+                        <div class="word-front">?</div>
+                        <div class="word-back">Every</div>
+                    </div>
+                    <div class="word-card" data-word="moment">
+                        <div class="word-front">?</div>
+                        <div class="word-back">moment</div>
+                    </div>
+                    <div class="word-card" data-word="with">
+                        <div class="word-front">?</div>
+                        <div class="word-back">with</div>
+                    </div>
+                    <div class="word-card" data-word="you">
+                        <div class="word-front">?</div>
+                        <div class="word-back">you</div>
+                    </div>
+                    <div class="word-card" data-word="feels">
+                        <div class="word-front">?</div>
+                        <div class="word-back">feels</div>
+                    </div>
+                    <div class="word-card" data-word="like">
+                        <div class="word-front">?</div>
+                        <div class="word-back">like</div>
+                    </div>
+                    <div class="word-card" data-word="pure">
+                        <div class="word-front">?</div>
+                        <div class="word-back">pure</div>
+                    </div>
+                    <div class="word-card" data-word="magic">
+                        <div class="word-front">?</div>
+                        <div class="word-back">magic</div>
+                    </div>
+                    <div class="word-card" data-word="!">
+                        <div class="word-front">?</div>
+                        <div class="word-back">!</div>
+                    </div>
+                </div>
+
+                <div class="sentence-reveal hidden" id="sentence">
+                    <p class="final-sentence">Every moment with you feels like pure magic ! <i
+                            class="fas fa-sparkles"></i>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Section -->
+        <section class="section final-section" id="final" data-section="8" data-complete="true">
+            <div class="container">
+                <div class="final-content">
+                    <i class="fas fa-heart final-heart fa-5x"></i>
+                    <p class="final-message">
+                        In this beautiful journey we call life, you're my favorite destination. Your presence turns
+                        ordinary
+                        days into extraordinary memories.
+                        Thank you for being the light that brightens my world and the warmth that fills my heart.
+                    </p>
+                    <h3 class="final-wish">অনেক ভালোবাসি তোমায় পুষ্প! <br> Happy Valentine's Day <i
+                            class="fas fa-heart"></i>
+                    </h3>
+                    <p class="final-signature">Forever yours! </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Flower Modal -->
+    <div class="modal hidden" id="flower-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-icon" id="modal-flower-icon">
+                <i class="fas fa-heart fa-3x"></i>
+            </div>
+            <h3 id="modal-title"></h3>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+    <!-- Song Modal -->
+    <div class="modal hidden" id="song-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content song-modal">
+            <button class="modal-close">&times;</button>
+            <div class="song-visual">
+                <div class="vinyl-record">
+                    <div class="vinyl-center"></div>
+                </div>
+            </div>
+            <h3 id="song-title"></h3>
+            <p id="song-artist"></p>
+            <p class="song-meaning" id="song-meaning"></p>
+            <div class="waveform">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
